@@ -29,22 +29,6 @@ async def insert_news(title, content, pub_date, source_url, language):
     except Exception as e:
         logging.error(f"❌ Error inserting news: {e}")
 
-async def insert_summary(period, date_from, date_to, content):
-    try:
-        data, count = (
-            client.table("summaries")
-            .insert({
-                "period": period,
-                "date_from": date_from.isoformat(),
-                "date_to": date_to.isoformat(),
-                "content": content
-            })
-            .execute()
-        )
-        logging.info(f"✅ Summary for {period} inserted successfully")
-    except Exception as e:
-        logging.error(f"❌ Error inserting summary: {e}")
-
 async def get_news_by_period(date_from, date_to):
     try:
         data, count = (
